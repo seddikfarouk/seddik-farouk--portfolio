@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enhanced Portfolio</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  rel="stylesheet"
+/>
+
+    <style>
+   
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #fff;
+        overflow-x: hidden;
+        display: flex;
+      }
+
+      .left-side {
+        width: 20%;
+        background-color: #2a2a2a;
+        height: 100vh;
+        padding: 2rem 1rem;
+        position: fixed;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .profile-preview {
+        text-align: center;
+      }
+
+      .profile-preview img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 3px solid #4a4a4a;
+        padding: 3px;
+        margin-bottom: 1rem;
+        transition: transform 0.3s ease;
+      }
+
+      .profile-preview img:hover {
+        transform: scale(1.05);
+      }
+
+      .profile-preview h3 {
+        color: #fff;
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+      }
+
+      .profile-preview p {
+        color: #aaa;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .sidebar-stats {
+        background-color: #3a3a3a;
+        border-radius: 10px;
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+
+      .stat-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #4a4a4a;
+      }
+
+      .stat-item:last-child {
+        border-bottom: none;
+      }
+
+      .stat-label {
+        color: #aaa;
+        font-size: 0.9rem;
+      }
+
+      .stat-value {
+        color: #fff;
+        font-weight: bold;
+      }
+
+      .sidebar-menu {
+        margin-top: 1rem;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 0.8rem 1rem;
+        color: #aaa;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .menu-item i {
+        margin-right: 0.8rem;
+        font-size: 1.2rem;
+      }
+
+      .menu-item:hover {
+        background-color: #3a3a3a;
+        color: #fff;
+        transform: translateX(5px);
+      }
+
+      .skills-section {
+        margin-top: 1rem;
+      }
+
+      .skill-bar {
+        margin-bottom: 1rem;
+      }
+
+      .skill-info {
+        display: flex;
+        justify-content: space-between;
+        color: #aaa;
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .progress-bar {
+        height: 6px;
+        background-color: #4a4a4a;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+
+      .progress {
+        height: 100%;
+        background-color: #fff;
+        border-radius: 3px;
+        transition: width 0.3s ease;
+      }
+
+     
+      .container {
+        width: 80%;
+        max-width: 1200px;
+        margin-left: 20%;
+        padding: 20px;
+        animation: fadeIn 1.5s ease-in;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        animation: slideDown 1s ease;
+      }
+
+      .navbar .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar .logo img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      .navbar ul {
+        display: flex;
+        list-style: none;
+      }
+
+      .navbar ul li a {
+        color: #aaa;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.3s;
+      }
+      .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 80px;
+            height: auto;
+            filter: drop-shadow(0 0 5px #3a91f2);
+        }
+      .navbar ul li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 100%;
+        height: 2px;
+        background-color: #aaa;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+        transform-origin: right;
+      }
+
+      .navbar ul li a:hover {
+        color: #fff;
+      }
+
+      .navbar ul li a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+      .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 50px 0;
+        margin-bottom: 100px;
+        margin-top: 50px; 
+      }
+
+      .text-section {
+        flex: 0 1 45%;
+        padding-right: 20px;
+        margin-top: 0;
+      }
+
+      .text-section h1 {
+        font-size: 48px;
+        font-weight: 700;
+        margin: 0; 
+        line-height: 1.2;
+      }
+
+      .text-section h2 {
+        font-size: 32px;
+        color: #fff;
+        margin: 10px 0; 
+      }
+
+      .text-section p {
+        color: #aaa;
+        line-height: 1.6;
+        margin: 15px 0; 
+        max-width: 500px;
+      }
+
+      .download-btn {
+        display: inline-block;
+        padding: 8px 20px;
+        background-color: #fff;
+        color: #121212;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 500;
+        margin: 15px 0; 
+      }
+      .social-icons {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: #3a91f2; 
+}
+.image-section {
+  flex: 0 0 auto;
+}
+
+.image-section .profile-picture {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #fff;
+  animation: rotateBorder 10s infinite linear;
+}
+
+.image-section .profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+           .projects-section {
+        margin-top: 100px; 
+        padding: 50px 0;
+        opacity: 0;
+        animation: fadeInUp 1.5s forwards 0.8s;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: #fff;
+        margin-bottom: 15px;
+      }
+
+      .section-title .divider {
+        width: 80px;
+        height: 4px;
+        background: #fff;
+        margin: 0 auto;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .project-card {
+        background-color: #2a2a2a;
+        border-radius: 15px;
+        padding: 25px;
+        transition: transform 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .project-card h3 {
+        color: #fff;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+
+      .project-card p {
+        color: #aaa;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #fff;
+        background-color: #4a4a4a;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+      }
+
+      .project-link:hover {
+        background-color: #6a6a6a;
+      }
+
+      .project-link i {
+        font-size: 1.2rem;
+      }
+      .container {
+  width: 80%;
+  max-width: 1200px; 
+  margin: 0 auto;
+}
+.footer {
+  width: 80%;
+  max-width: 1200px; 
+  margin: 0 auto; 
+}
+
+
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-brand {
+  font-family: 'Times New Roman', serif;
+  font-size: 32px;
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.footer-left p {
+  color: #888;
+  line-height: 1.6;
+  font-size: 14px;
+  max-width: 300px;
+}
+
+.footer h3 {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer ul li a {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.footer ul li a:hover {
+  color: #fff;
+}
+
+.social-media-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-media-icons a {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-media-icons a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  text-align: center;
+  color: #888;
+  font-size: 12px;
+}
+
+.footer-bottom a {
+  color: #888;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  color: #fff;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #000000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.welcome-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #000000, #111111);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 1.5s ease 8s forwards;
+}
+
+.logo-container {
+  margin-bottom: 30px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  animation: logoFade 4s forwards; 
+}
+
+.logo-container img {
+  width: 80px;
+  height: auto;
+  filter: brightness(0) invert(1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+  animation: logoScale 4s forwards; 
+}
+
+@keyframes logoFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+    visibility: hidden;
+  }
+}
+
+@keyframes logoScale {
+  0% {
+    transform: scale(0.8);
+  }
+  10% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.welcome-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.welcome-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.welcome-item {
+  font-size: 2.5rem;
+  font-weight: 800;
+  position: absolute;
+  opacity: 0;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, #FFFFFF, #888888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2));
+
+  animation-delay: 4s !important;
+}
+
+
+.welcome-item:nth-child(1) {
+  left: 15%;
+  animation: modernFall 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.welcome-item:nth-child(2) {
+  left: 35%;
+  animation: modernFall 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.3s;
+}
+
+.welcome-item:nth-child(3) {
+  left: 55%;
+  animation: modernFall 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.1s;
+}
+
+.welcome-item:nth-child(4) {
+  left: 75%;
+  animation: modernFall 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.5s;
+}
+
+.welcome-item:nth-child(5) {
+  left: 85%;
+  animation: modernFall 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.2s;
+}
+
+@keyframes modernFall {
+  0% {
+    transform: translateY(-120vh) scale(0.8);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.8;
+    filter: blur(0px);
+  }
+  75% {
+    transform: translateY(40vh) scale(1.1);
+  }
+  100% {
+    transform: translateY(45vh) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    backdrop-filter: blur(20px);
+  }
+}
+
+.welcome-screen::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    transparent 100%
+  );
+  animation: noiseMove 8s linear infinite;
+}
+
+@keyframes noiseMove {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.main-content {
+  display: none;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 8s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    display: block;
+  }
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 2;
+}
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  background: rgba(42, 42, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+}
+
+.player-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.song-info {
+  text-align: left;
+}
+
+.song-title {
+  color: #fff;
+  font-size: 14px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.song-artist {
+  color: #aaa;
+  font-size: 12px;
+  margin: 4px 0 0 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress {
+  width: 30%;
+  height: 100%;
+  background: #fff;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.play-btn {
+  width: 35px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+}
+
+.volume-slider {
+  width: 60px;
+  height: 4px;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.music-player {
+  animation: fadeIn 0.5s ease-out;
+}
+    </style>
+  </head>
+  <body>
+     <div class="welcome-screen">
+      <div class="logo-container">
+        <img src="images/LOGO SF 31.png" alt="Your Logo">
+      </div>
+      <div class="welcome-container">
+        <div class="welcome-text">
+          <div class="welcome-item">Welcome</div>
+          <div class="welcome-item">Bienvenue</div>
+          <div class="welcome-item">Willkommen</div>
+          <div class="welcome-item">Bienvenido</div>
+          <!-- <div class="welcome-item">أهلا وسهلا</div>
+          <div class="welcome-item">欢迎</div>
+          <div class="welcome-item">स्वागत है</div>
+          <div class="welcome-item">Добро пожаловать</div>
+          <div class="welcome-item">ようこそ</div>
+          <div class="welcome-item">환영합니다</div>
+          <div class="welcome-item">Välkommen</div> -->
+        </div>
+      </div>
+    </div>
+    <div class="left-side">
+      <div class="profile-preview">
+        <img
+          src="images/462546233_1280531413380177_4807620856387518221_n.jpg"
+          alt="Profile Picture"
+        />
+        <h3>Seddik Farouk</h3>
+        <p>Frontend Developer</p>
+      </div>
+
+      <div class="sidebar-stats">
+        <div class="stat-item">
+          <span class="stat-label">Projects</span>
+          <span class="stat-value">2</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Experience</span>
+          <span class="stat-value">3 years</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Clients</span>
+          <span class="stat-value">18</span>
+        </div>
+      </div>
+
+      <div class="skills-section">
+        <div class="skill-bar">
+          <div class="skill-info">
+            <span>HTML/CSS</span>
+            <span>95%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 95%"></div>
+          </div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-info">
+            <span>JavaScript</span>
+            <span>85%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 85%"></div>
+          </div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-info">
+            <span>ui/ux</span>
+            <span>80%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 80%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-menu">
+        <a href="#" class="menu-item">
+          <i class="fas fa-home"></i>
+          Home
+        </a>
+        <a href="#" class="menu-item">
+          <i class="fas fa-user"></i>
+          About
+        </a>
+        <a href="#" class="menu-item">
+          <i class="fas fa-briefcase"></i>
+          Portfolio
+        </a>
+        <a href="#" class="menu-item">
+          <i class="fas fa-envelope"></i>
+          Contact
+        </a>
+      </div>
+    </div>
+
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <img src="images/LOGO SF 31.png" alt="Logo" />
+        </div>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="#">Service</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="content">
+        <div class="text-section">
+          <h1>Welcome to My Portfolio</h1>
+          <h2>I'm <span class="highlight"> Seddik Farouk</span></h2>
+          <p>
+            Hi, I'm Seddik Farouk, a web developer and UI/UX designer passionate about creating intuitive and user-friendly digital experiences. I specialize in HTML, CSS, and JavaScript to bring ideas to life.
+          </p>
+          <a href="cv.html" class="download-btn">Download CV</a>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/faroxuk21?igsh=ZzBsMnR5cmpiZ2U1"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/sed.farouk.7?locale=fr_FR"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.behance.net/sedfarouk"><i class="fab fa-behance"></i></a>
+            <a href="https://www.linkedin.com/in/seddik-farouk-201597323?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:redmised31@gmail.com"
+              ><i class="fas fa-envelope"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="image-section">
+          <div class="profile-picture">
+            <img
+              src="images/456222323_518134554098417_7005831071458792538_n.jpg"
+              alt="Profile Picture"
+            />
+          </div>
+          <div class="projects-section">
+            <div class="section-title">
+              <h2>My Projects</h2>
+              <div class="divider"></div>
+            </div>
+            <div class="projects-grid">
+      
+              <div class="project-card">
+                <h3>Project Name 1</h3>
+                <p>Brief description of your first project. Highlight the key features and technologies used.</p>
+                <div class="project-links">
+                  <a href="https://github.com/yourusername/project1" class="project-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                  </a>
+                  <a href="https://project1-demo.com" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                  <a href="https://www.behance.net/gallery/178179717/car" class="project-link">
+                    <i class="fab fa-behance"></i>
+                    Behance
+                  </a>
+                </div>
+              </div>
+              <div class="project-card">
+                <h3>Project Name 2</h3>
+                <p>Brief description of your first project. Highlight the key features and technologies used.</p>
+                <div class="project-links">
+                  <a href="https://github.com/yourusername/project1" class="project-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                  </a>
+                  <a href="https://project1-demo.com" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                  <a href="https://www.behance.net/gallery/178091697/adidas-shoe-own-the-game" class="project-link">
+                    <i class="fab fa-behance"></i>
+                    Behance
+                  </a>
+                </div>
+              </div>
+              <div class="project-card">
+                <h3>Project Name 3</h3>
+                <p>Brief description of your first project. Highlight the key features and technologies used.</p>
+                <div class="project-links">
+                  <a href="https://github.com/yourusername/project1" class="project-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                  </a>
+                  <a href="https://project1-demo.com" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                  <a href="https://www.behance.net/gallery/177956249/appweb-treating-a-pet-design" class="project-link">
+                    <i class="fab fa-behance"></i>
+                    Behance
+                  </a>
+                </div>
+              </div>
+              <div class="project-card">
+                <h3>Project Name 4</h3>
+                <p>Brief description of your second project. Explain what problems it solves and its main features.</p>
+                <div class="project-links">
+                  <a href="https://github.com/yourusername/project2" class="project-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                  </a>
+                  <a href="https://project2-demo.com" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                  <a href="https://www.behance.net/gallery/212575269/Nike-VaporMax-Landing-Page-Design" class="project-link">
+                    <i class="fab fa-behance"></i>
+                    Behance
+                  </a>
+                </div>
+              </div>
+           
+              <div class="project-card">
+                <h3>Project Name 5</h3>
+                <p>Third project description goes here. Discuss the unique aspects and key technical solutions provided.</p>
+                <div class="project-links">
+                  <a href="https://github.com/yourusername/project3" class="project-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                  </a>
+                  <a href="https://project3-demo.com" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                  <a href="https://www.behance.net/gallery/178107843/ac-milan-t-shirt-2023" class="project-link">
+                    <i class="fab fa-behance"></i>
+                    Behance
+                  </a>
+                </div>
+              </div>
+              <div class="project-card">
+                <h3>Project Name 6</h3>
+                <p>Brief description of your first project. Highlight the key features and technologies used.</p>
+                <div class="project-links">
+                  <a href="https://github.com/yourusername/project1" class="project-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                  </a>
+                  <a href="https://project1-demo.com" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                  <a href="https://www.behance.net/gallery/178092299/adidas-running-shoe-switch-run" class="project-link">
+                    <i class="fab fa-behance"></i>
+                    Behance
+                  </a>
+                </div>
+              </div>
+              <div class="project-card">
+                <h3>Project Name 7</h3>
+                <p>Brief description of your second project. Explain what problems it solves and its main features.</p>
+                <div class="project-links">
+                  <a href="https://github.com/yourusername/project2" class="project-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                  </a>
+                  <a href="https://project2-demo.com" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                  <a href="https://www.behance.net/gallery/178108115/real-madrid-t-shirt-2023" class="project-link">
+                    <i class="fab fa-behance"></i>
+                    Behance
+                  </a>
+                </div>
+              </div>
+           
+              <div class="project-card">
+                <h3>Project Name 8</h3>
+                <p>Third project description goes here. Discuss the unique aspects and key technical solutions provided.</p>
+                <div class="project-links">
+                  <a href="https://github.com/yourusername/project3" class="project-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                  </a>
+                  <a href="https://project3-demo.com" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                  <a href="https://www.behance.net/gallery/178247947/AIR-JORDAN-12-RETRO" class="project-link">
+                    <i class="fab fa-behance"></i>
+                    Behance
+                  </a>
+                </div>
+              </div>
+              <div class="project-card">
+                <h3>Project Name 9</h3>
+                <p>Third project description goes here. Discuss the unique aspects and key technical solutions provided.</p>
+                <div class="project-links">
+                  <a href="https://github.com/yourusername/project3" class="project-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                  </a>
+                  <a href="https://project3-demo.com" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                  <a href="https://www.behance.net/gallery/177871817/STUDY-ONLINE-DESIGN" class="project-link">
+                    <i class="fab fa-behance"></i>
+                    Behance
+                  </a>
+                </div>
+              </div>
+              <div class="project-card">
+                <h3>Project Name 10</h3>
+                <p>Fourth project details. Mention how this project stands out and contributes to user experience.</p>
+                <div class="project-links">
+                  <a href="https://github.com/yourusername/project4" class="project-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                  </a>
+                  <a href="https://project4-demo.com" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Live Demo
+                  </a>
+                  <a href="https://www.behance.net/gallery/178418195/NIKE-AIR-FORCE" class="project-link">
+                    <i class="fab fa-behance"></i>
+                    Behance
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="music-player">
+            <div class="player-content">
+              <div class="song-info">
+                <h4 class="song-title">Ambient Music</h4>
+                <p class="song-artist">Background Artist</p>
+              </div>
+              <div class="progress-bar">
+                <div class="progress"></div>
+              </div>
+              <div class="controls">
+                <button class="control-btn" id="prevBtn">
+                  <i class="fas fa-backward"></i>
+                </button>
+                <button class="control-btn play-btn" id="playBtn">
+                  <i class="fas fa-play"></i>
+                </button>
+                <button class="control-btn" id="nextBtn">
+                  <i class="fas fa-forward"></i>
+                </button>
+                <div class="volume-container">
+                  <i class="fas fa-volume-up"></i>
+                  <input type="range" class="volume-slider" min="0" max="100" value="100">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+         
+          <audio id="audioPlayer" src="ANRI MUSIC/Oceanic._MFqfFUTGp2M.mp3"></audio>
+          
+  </body>
+  <footer style="background-color: #121212; color: #ffffff; padding: 40px 20px; font-family: 'Inter', sans-serif; text-align: center; position: relative;">
+    
+    <footer class="footer">
+      <div class="logo-container">
+          
+          <img src="images/LOGO SF 31.png" alt="Logo" class="logo">
+      </div>
+    
+    <h3 style="margin: 0; font-size: 22px; font-weight: 600; color: #ffffff;">Empowering Developers, One Line of Code at a Time</h3>
+    <p style="margin: 10px 0 30px; font-size: 14px; color: #b0b0b0; line-height: 1.6;">
+        Building innovative solutions for programmers and technology enthusiasts across the globe.
+    </p>
+
+
+    <div style="margin-bottom: 30px;">
+        <a href="https://github.com/seddikfarouk" style="margin: 0 15px; color: #3a91f2; text-decoration: none; font-size: 24px; transition: all 0.3s;">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/seddik-farouk-201597323?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" style="margin: 0 15px; color: #0077b5; text-decoration: none; font-size: 24px; transition: all 0.3s;">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://www.behance.net/sedfarouk" style="margin: 0 15px; color: #1da1f2; text-decoration: none; font-size: 24px; transition: all 0.3s;">
+            <i class="fab fa-behance"></i>
+        </a>
+    </div>
+
+
+    <div style="margin-bottom: 30px;">
+        <a href="/privacy-policy" style="margin: 0 10px; color: #b0b0b0; text-decoration: none; font-size: 14px; transition: color 0.3s;">Privacy Policy</a>
+        <a href="/terms-of-service" style="margin: 0 10px; color: #b0b0b0; text-decoration: none; font-size: 14px; transition: color 0.3s;">Terms of Service</a>
+        <a href="/contact" style="margin: 0 10px; color: #b0b0b0; text-decoration: none; font-size: 14px; transition: color 0.3s;">Contact</a>
+    </div>
+
+    <blockquote style="margin: 20px auto 30px; font-style: italic; font-size: 14px; color: #757575; max-width: 500px; line-height: 1.6;">
+        "Code is poetry. It is how we make machines do extraordinary things."
+    </blockquote>
+
+    <div style="font-size: 13px; color: #757575; border-top: 1px solid #333; padding-top: 20px; margin-top: 30px;">
+        &copy; 2024 <span style="color: #3a91f2; font-weight: 600;">YourCompany</span>. Made with 💻 and ☕ by passionate developers.
+    </div>
+</footer>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+  const audioPlayer = document.getElementById("audioPlayer");
+  const playBtn = document.getElementById("playBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const progressBar = document.querySelector(".progress");
+  const volumeSlider = document.querySelector(".volume-slider");
+
+  let isPlaying = false;
+
+  
+  playBtn.addEventListener("click", () => {
+    if (isPlaying) {
+      audioPlayer.pause();
+      playBtn.innerHTML = '<i class="fas fa-play"></i>';
+    } else {
+      audioPlayer.play();
+      playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    }
+    isPlaying = !isPlaying;
+  });
+
+  audioPlayer.addEventListener("timeupdate", () => {
+    const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+  });
+
+ 
+  volumeSlider.addEventListener("input", (e) => {
+    audioPlayer.volume = e.target.value / 100;
+  });
+
+
+  prevBtn.addEventListener("click", () => {
+    console.log("Previous track functionality not implemented.");
+  });
+
+  nextBtn.addEventListener("click", () => {
+    console.log("Next track functionality not implemented.");
+  });
+});
+
+  </script>
+</html>
